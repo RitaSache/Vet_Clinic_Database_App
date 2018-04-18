@@ -1,0 +1,67 @@
+CREATE TABLE CatBreed
+(
+  BreedId INT AUTO_INCREMENT
+    PRIMARY KEY,
+  Breed   VARCHAR(250) NULL,
+  CatId   INT          NULL,
+  CONSTRAINT CatBreed_CatInfo_ID_fk
+  FOREIGN KEY (CatId) REFERENCES vetclinicdb.CatInfo (ID)
+)
+  ENGINE = InnoDB;
+
+CREATE INDEX CatBreed_CatInfo_ID_fk
+  ON CatBreed (CatId);
+
+CREATE TABLE CatInfo
+(
+  ID   INT AUTO_INCREMENT
+    PRIMARY KEY,
+  Name VARCHAR(250) NULL
+)
+  ENGINE = InnoDB;
+
+CREATE TABLE CatRegistry
+(
+  RegistryId INT AUTO_INCREMENT
+    PRIMARY KEY,
+  Registry   VARCHAR(250) NULL,
+  CatId      INT          NULL,
+  CONSTRAINT CatRegistry_CatInfo_ID_fk
+  FOREIGN KEY (CatId) REFERENCES vetclinicdb.CatInfo (ID)
+)
+  ENGINE = InnoDB;
+
+CREATE INDEX CatRegistry_CatInfo_ID_fk
+  ON CatRegistry (CatId);
+
+CREATE TABLE OwnerPhone
+(
+  catId      INT          NULL,
+  ownerPhone VARCHAR(250) NULL,
+  PhoneID    INT AUTO_INCREMENT
+    PRIMARY KEY,
+  CONSTRAINT OwnerPhone_CatInfo_ID_fk
+  FOREIGN KEY (catId) REFERENCES vetclinicdb.CatInfo (ID)
+)
+  ENGINE = InnoDB;
+
+CREATE INDEX OwnerPhone_CatInfo_ID_fk
+  ON OwnerPhone (catId);
+
+CREATE TABLE OwnerPrimaryAddress
+(
+  AddressID    INT AUTO_INCREMENT
+    PRIMARY KEY,
+  City         VARCHAR(250) NULL,
+  CatId        INT          NULL,
+  StreetAndApt VARCHAR(250) NULL,
+  StateAndZip  VARCHAR(250) NULL,
+  CONSTRAINT OnwerPrimaryAddress_CatInfo_ID_fk
+  FOREIGN KEY (CatId) REFERENCES vetclinicdb.CatInfo (ID)
+)
+  ENGINE = InnoDB;
+
+CREATE INDEX OnwerPrimaryAddress_CatInfo_ID_fk
+  ON OwnerPrimaryAddress (CatId);
+
+

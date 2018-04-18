@@ -72,5 +72,3 @@ public class Main {
         }
     }
 }
-
-//submit source files and DDL and DML of tables from datagrip in text file so tables can be created
